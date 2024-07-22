@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | ball</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
     <style>
         body { margin: 0; overflow: hidden; }
-        #unity-container { width: 100%; height: 100%; }
-        #unity-canvas { width: 100%; height: 100%; }
+        #unityContainer { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-    <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-        <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty">
-                <div id="unity-progress-bar-full"></div>
-            </div>
-        </div>
-        <div id="unity-warning"> </div>
-        <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">ball</div>
-        </div>
-    </div>
+    <div id="unityContainer"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="Build/UnityLoader.js"></script>
     <script>
+        Telegram.WebApp.ready();
+
+        const initData = Telegram.WebApp.initData || '';
+        const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+
+        const unityInstance = UnityLoader.instantiate("unityContainer", "Build/build.json", {
+            onProgress: UnityProgress
+        });
+
+        unityInstance.then((instance) => {
+            if (initDataUnsafe.user) {
+                const userId = initDataUnsafe.user.id;
+                console.log('Telegram User ID:', userId);
+
+                instance.SendMessage('LoadingManager', 'SetUserId', userId.toString());
+            } else {
+                console.error('Failed to authenticate user');
+            }
+        });
+    </script>
+</body>
+</html>
+
 
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
