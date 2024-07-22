@@ -59,18 +59,18 @@
             updateBannerVisibility();
         }
 
-          var buildUrl = "Build";
-          var loaderUrl = buildUrl + "/TelegramWebApp v1.loader.js";
-          var config = {
-            dataUrl: buildUrl + "/TelegramWebApp v1.data.unityweb",
-            frameworkUrl: buildUrl + "/TelegramWebApp v1.framework.js.unityweb",
-            codeUrl: buildUrl + "/TelegramWebApp v1.wasm.unityweb",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "DefaultCompany",
-            productName: "ball",
-            productVersion: "1.0.2",
-            showBanner: unityShowBanner,
-        };
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/TelegramWebApp v2.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/TelegramWebApp v2.data.unityweb",
+        frameworkUrl: buildUrl + "/TelegramWebApp v2.framework.js.unityweb",
+        codeUrl: buildUrl + "/TelegramWebApp v2.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "ball",
+        productVersion: "1.0.2",
+        showBanner: unityShowBanner,
+      };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             var meta = document.createElement('meta');
